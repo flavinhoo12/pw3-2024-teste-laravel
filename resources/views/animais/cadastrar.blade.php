@@ -6,7 +6,8 @@
 
 @section('conteudo')
 <p>Preencha o formulário</p>
-<form method="post" action="{{ route('animais.gravar) }}">
+<form method="post" action="{{ route('animais.gravar') }}">
+    @csrf
     <input type="text" name="nome" placeholder="Nome">
     <br>
     <input type="number" name="idade" placeholder="Idade">

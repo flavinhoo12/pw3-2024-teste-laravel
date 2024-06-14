@@ -1,4 +1,4 @@
-{{-- ressources/views/animais/index.blade.php --}}
+{{-- resources/views/animais/index.blade.php --}}
 
 @extends('base')
 
