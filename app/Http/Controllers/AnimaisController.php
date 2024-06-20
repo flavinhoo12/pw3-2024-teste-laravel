@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 class AnimaisController extends Controller{
     public function index(){
-        return view('animais.index');
+        $dados = Animal::all();
+
+        return view('animais.index', [
+            'animais' => $dados,
+        ]);
     }
 
     public function cadastrar(){
@@ -14,7 +19,18 @@ class AnimaisController extends Controller{
     }
 
     public function gravar(Request $form){
-        #dd($form); como pegar os dados do formulario
-        echo $form->nome;
+        $dados = $form->validate([
+            'nome' => 'required|min:3',
+            'idade' => 'required|integer'
+        ]);
+        Animal::create($dados);
+        
+        return redirect()->route('animais');
+    }
+
+    public function apagar(Animal $animal){
+        return view('animais.apagar', [
+            'animal' => $animal,
+        ]);
     }
 }
