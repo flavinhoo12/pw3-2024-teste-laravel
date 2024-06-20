@@ -4,7 +4,7 @@
         <title>@yield('titulo')</title>
     </head>
     <body>
-        <h1>@yield('titulo')</h1>
+        <marquee behavior="" direction=""><h1>@yield('titulo')</h1></marquee>
         <hr>
         @yield('conteudo')
     </body>
