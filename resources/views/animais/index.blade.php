@@ -20,7 +20,11 @@
     <tr>
         <td>{{ $animal['nome'] }}</td>
         <td>{{ $animal['idade'] }}</td>
-        <td><a href="{{ route('animais.apagar', $animal['id']) }}">Apagar</a></td>
+        <td>
+            <a href="{{ route('animais.editar', $animal['id']) }}">Editar</a>
+            |
+            <a href="{{ route('animais.apagar', $animal['id']) }}">Apagar</a>
+        </td>
     </tr>
         
     @endforeach

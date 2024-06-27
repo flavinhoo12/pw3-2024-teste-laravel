@@ -28,6 +28,22 @@ class AnimaisController extends Controller{
         return redirect()->route('animais');
     }
 
+    public function editar(Animal $animal) {
+        return view('animais/editar', ['animal' => $animal]);
+       }
+
+    public function editarGravar(Request $form, Animal $animal)
+        {
+            $dados = $form->validate([
+            'nome' => 'required|min:3',
+            'idade' => 'required|integer',
+            ]);
+
+            $animal->fill($dados);
+            $animal->save();
+            return redirect()->route('animais');
+        }
+
     public function apagar(Animal $animal){
         return view('animais.apagar', [
             'animal' => $animal,
