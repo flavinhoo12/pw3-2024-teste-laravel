@@ -49,4 +49,9 @@ class AnimaisController extends Controller{
             'animal' => $animal,
         ]);
     }
+
+    public function deletar(Animal $animal){
+        $animal->delete();
+        return redirect()->route('animais');
+    }
 }

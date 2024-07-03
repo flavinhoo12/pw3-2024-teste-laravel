@@ -19,4 +19,4 @@ Route::put('/animais/editar/{animal}', [AnimaisController::class, 'editarGravar'
 
 Route::get('/animais/apagar/{animal}', [AnimaisController::class, 'apagar'])->name('animais.apagar');
 
-Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'apagar']);
+Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'deletar']);
