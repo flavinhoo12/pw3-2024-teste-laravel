@@ -1,4 +1,4 @@
-{{-- resources/views/animais/cadastrar.blade.php --}}
+{{-- resources/views/users/cadastrar.blade.php --}}
 
 @extends('base')
 

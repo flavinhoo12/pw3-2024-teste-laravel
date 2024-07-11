@@ -1,4 +1,4 @@
-{{-- resources/views/animais/index.blade.php --}}
+{{-- resources/views/users/index.blade.php --}}
 
 @extends('base')
 
@@ -15,6 +15,7 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Nome de usuário</th>
+        <th>Administrador</th>
         <th>Ações</th>
     </tr>
     @foreach($users as $user)
@@ -22,6 +23,7 @@
         <td>{{ $user['name'] }}</td>
         <td>{{ $user['email'] }}</td>
         <td>{{ $user['username'] }}</td>
+        <td>{{ $user['admin'] }}</td>
         <td>
             <a href="{{ route('users.editar', $user['id']) }}">Editar</a>
             |

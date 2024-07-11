@@ -36,3 +36,9 @@ Route::put('/users/editar/{user}', [UsersController::class, 'editarGravar'])->na
 Route::get('/users/apagar/{user}', [UsersController::class, 'apagar'])->name('users.apagar');
 
 Route::delete('/users/apagar/{user}', [UsersController::class, 'deletar']);
+
+Route::get('login', [UsersController::class, 'login'])->name('login');
+
+Route::post('login', [UsersController::class, 'login']);
+
+Route::get('logout', [UsersController::class, 'logout'])->name('logout');

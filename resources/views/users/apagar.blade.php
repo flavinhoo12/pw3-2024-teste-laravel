@@ -1,4 +1,4 @@
-{{-- resources/views/animais/apagar.blade.php --}}
+{{-- resources/views/users/apagar.blade.php --}}
 @extends('base')
 
 @section('titulo', 'Apagar | Usuários')

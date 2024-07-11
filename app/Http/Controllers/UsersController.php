@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     public function index(){
         $dados = User::all();
+
+        $users = User::orderBy('name', 'asc')->get();
 
         return view('users.index', [
             'users' => $dados,
@@ -24,9 +27,10 @@ class UsersController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email',
             'username' => 'required|max:255',
-            'password' => 'required|max:255'
-
+            'password' => 'required|max:255',
+            'admin' => 'boolean'
         ]);
+        $dados['password'] = Hash::make($dados['password']);
         User::create($dados);
         
         return redirect()->route('users');
@@ -40,9 +44,10 @@ class UsersController extends Controller
         {
             $dados = $form->validate([
                 'name' => 'required|max:255',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users',
                 'username' => 'required|max:255',
-                'password' => 'required|max:255'
+                'password' => 'required|max:255',
+                'admin' => 'boolean'
             ]);
 
             $user->fill($dados);
@@ -59,5 +64,16 @@ class UsersController extends Controller
     public function deletar(User $user){
         $user->delete();
         return redirect()->route('users');
+    }
+
+    public function login(Request $form){
+        if($form->isMethod('POST')){
+            dd($form);
+        }
+        return view('users.login');
+    }
+
+    public function logout(){
+
     }
 }

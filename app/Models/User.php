@@ -17,5 +17,6 @@ class User extends Model
         'email',
         'username',
         'password',
+        'admin',
     ];
 }

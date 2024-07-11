@@ -1,4 +1,4 @@
-{{-- resources/views/animais/cadastrar.blade.php --}}
+{{-- resources/views/users/cadastrar.blade.php --}}
 
 @extends('base')
 
@@ -23,6 +23,12 @@
     <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
     <br>
     <input type="text" name="username" placeholder="Nome de usuário" value="{{ old('username') }}">
+    <br>
+    <label for="admin">Administrador:</label>
+    <select name="admin">
+        <option value="1">Sim</option>
+        <option value="0">Não</option>
+    </select>
     <br>
     <input type="password" name="password" placeholder="Senha">
     <br>
