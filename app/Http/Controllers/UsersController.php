@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -66,13 +67,38 @@ class UsersController extends Controller
         return redirect()->route('users');
     }
 
-    public function login(Request $form){
-        if($form->isMethod('POST')){
+    // public function login(Request $form){
+    //     if($form->isMethod('POST')){
+    //         dd($form);
+    //     }
+    //     return view('users.login');
+    // }
+
+    // if(Auth::attempt($credenciais)){
+    //     return redirect()->intended(route('index'));
+    // } else{
+    //     return redirect()->route('login')->with('erro', 'Usuario...')
+    // }
+    public function login(Request $form) {
+        if ($form->isMethod('POST')) {
             dd($form);
+
+            // Pega os dados do formulário
+            $credenciais = $form->validate([
+                'username' => 'required',
+                'password' => 'required',
+            ]);
+
+            // Tenta fazer o login
+            if (Auth::attempt($credenciais)) {
+                return redirect()->route('index');
+            } else {
+                return redirect()->route('login')->with('erro', 'Usuário ou senha inválidos');
+            }
         }
+
         return view('users.login');
     }
-
     public function logout(){
 
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimaisController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\Configuration\Group;
 
 Route::get('/', function () {
     return view('inicial');
@@ -23,20 +24,16 @@ Route::get('/animais/apagar/{animal}', [AnimaisController::class, 'apagar'])->na
 Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'deletar']);
 
 //usuarios
-Route::get('/users', [UsersController::class, 'index'])->name('users');
-
-Route::get('/users/cadastrar', [UsersController::class, 'cadastrar'])->name('users.cadastrar');
-
-Route::post('/users/cadastrar', [UsersController::class, 'gravar'])->name('users.gravar');
-
-Route::get('/users/editar/{user}', [UsersController::class, 'editar'])->name('users.editar');
-
-Route::put('/users/editar/{user}', [UsersController::class, 'editarGravar'])->name('editar.teste');
-
-Route::get('/users/apagar/{user}', [UsersController::class, 'apagar'])->name('users.apagar');
-
-Route::delete('/users/apagar/{user}', [UsersController::class, 'deletar']);
-
+Route::prefix('users')->middleware('auth')->group(function() {
+    Route::get('/', [UsersController::class, 'index'])->name('users');
+    Route::get('/cadastrar', [UsersController::class, 'cadastrar'])->name('users.cadastrar');
+    Route::get('/cadastrar', [UsersController::class, 'gravar'])->name('users.gravar');
+    Route::get('/editar{user}', [UsersController::class, 'editar'])->name('users.editar');
+    Route::get('/editar{user}', [UsersController::class, 'editarGravar'])->name('editar.teste');
+    Route::get('/apagar{user}', [UsersController::class, 'apagar'])->name('users.apagar');
+    Route::get('/apagar{user}', [UsersController::class, 'deletar']);
+    
+});
 Route::get('login', [UsersController::class, 'login'])->name('login');
 
 Route::post('login', [UsersController::class, 'login']);
